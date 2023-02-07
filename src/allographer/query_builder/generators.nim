@@ -184,7 +184,7 @@ proc whereInSql*(self:Rdb): Rdb =
         elif val.kind == JFloat:
           widthString.add($(val.getFloat()))
         elif val.kind == JString:
-          widthString.add($(val.getStr()))
+          widthString.add("'" &val.getStr() & "'")
 
       if self.sqlString.contains("WHERE"):
         self.sqlString.add(&" AND {column} IN ({widthString})")
