@@ -73,6 +73,7 @@ proc toJson(driver:Driver, results:openArray[seq[string]], dbRows:DbRows):seq[Js
   return response_table
 
 proc getAllRows(self:Rdb | RawQueryRdb, sqlString:string, args:seq[string]):Future[seq[JsonNode]] {.async.} =
+  echo "sql=", sqlString, "args = ", args
   let (rows, dbRows) = self.conn.query(
     self.driver,
     sqlString,
